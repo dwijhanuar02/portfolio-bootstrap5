@@ -132,10 +132,6 @@
         <h3 class="text-center pt-5">Contact Us</h3>
         <div class="row justify-content-center">
           <div class="col-md-8">
-            <div class="alert alert-success d-none alert-dismissible fade show my-alert" role="alert">
-              Pesan <strong>berhasil terkirim</strong>. terima kasih.
-              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
             <form name="contact-form">
               <div class="mb-3">
                 <label for="nama" class="form-label">Nama</label>
@@ -172,16 +168,15 @@
     <!-- End Footer -->
     
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/sweetalert2.all.min.js"></script>
     <script>
       const scriptURL = 'https://script.google.com/macros/s/AKfycbxYAC1lXNcCwApUCYbpwshwacO7fvxZyWA1hGF2vMFX9JGv32YA7ATZGNU4H43EmE4SAA/exec';
       const form = document.forms['contact-form'];
       const btnSend = document.querySelector('.btn-send');
       const btnLoading = document.querySelector('.btn-loading');
-      const myAlert = document.querySelector('.my-alert');
 
       form.addEventListener('submit', e => {
         e.preventDefault();
-        
         // Tampilkan tombol loading, hilangkan tombol kirim
         btnLoading.classList.toggle('d-none');
         btnSend.classList.toggle('d-none');
@@ -191,7 +186,11 @@
             btnLoading.classList.toggle('d-none');
             btnSend.classList.toggle('d-none');
             // Tampilkan alert
-            myAlert.classList.toggle('d-none');
+            Swal.fire(
+              'Success',
+              'Pesan berhasil terkirim.',
+              'success'
+            );
             // Reset form
             form.reset();
             console.log('Success!', response);
